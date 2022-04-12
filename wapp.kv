@@ -1,0 +1,497 @@
+<CustomSnackbar>
+
+ 
+
+    MDLabel:
+        id: text_bar
+        size_hint_y: None
+        height: self.texture_size[1]
+        text: root.text
+        font_size: 20
+        theme_text_color: 'Custom'
+        text_color: get_color_from_hex('ffffff')
+        shorten: True
+        shorten_from: 'right'
+        pos_hint: {'center_y': .5}
+        duration: 7
+
+MDScreen:
+
+    
+
+    MDBottomNavigation:
+        panel_color: app.theme_cls.primary_light
+        selected_color_background: app.theme_cls.primary_light
+        text_color_active: 0, 0, 0, 1
+        
+        
+        MDBottomNavigationItem:
+            name: 'screen 1'
+            text: 'Enviar Mensagem'
+            icon: 'email-send'
+            badge_icon: "numeric-10"
+
+            MDToolbar:
+                title: "WhatsApp Web Automático"
+                pos_hint: {"center_y": .9, 'center_x': .5} 
+                size_hint_y: .15
+                halign: 'center'
+                font_size: 30 
+
+           
+            MDTextField:
+                id: mensagem
+                hint_text: "Digite a mensagem desejada" 
+                pos_hint: {"center_y": .65, 'center_x': .5} 
+                size_hint_x: .810
+                size_hint_y: .2
+                icon_right: "message-draw"
+                multiline: True
+                fill_color: 0, 0, 0, .1
+                mode: 'fill' 
+                font_size: 20
+
+            MDCard:
+                orientation: 'horizontal'
+                elevation:30
+                size: "810dp", "100dp"
+                pos_hint: {"center_x": .5, "center_y": .2}
+                padding: "8dp" 
+                size_hint: None, None
+                border_radius: 20
+                radius: [15]
+                spacing: "10dp"
+
+                MDLabel:
+                    
+                    text:'Para enviar a mensagem com um anexo, escolha ao lado o tipo de arquivo:'
+                    halign: 'center'
+                    theme_text_color: "Custom"
+                    font_size: 20
+                    size_hint_x: .15
+                    md_bg_color: app.theme_cls.primary_light  
+                    border_radius: 20
+                    radius: [15]   
+
+                MDFillRoundFlatIconButton:
+                    on_release: app.envio_com_imagem()
+                    id: imagem
+                    icon: "camera"
+                    text: "Imagens"
+                    md_bg_color: 255, 0, 255, 1
+                    pos_hint: { "center_y": .5}
+                    font_size: 15  
+
+                MDFillRoundFlatIconButton:
+                    on_release: app.envio_com_pdf()
+                    id: pdf
+                    icon: "file-pdf-box"
+                    text: "PDF"
+                    md_bg_color: 255, 0, 0, 1
+                    pos_hint: { "center_y": .5}
+                    font_size: 15  
+
+                
+                MDFillRoundFlatIconButton:
+                    on_release: app.envio_com_excel()
+                    id: pdf
+                    id: planilha
+                    icon: "microsoft-excel"
+                    text: "Planilhas"
+                    md_bg_color: 11/255,156/255,49/255,1
+                    pos_hint: { "center_y": .5}
+                    font_size: 15  
+
+                MDFillRoundFlatIconButton:
+                    on_release: app.envio_com_word()
+                    id: doc
+                    icon: "file-word-box"
+                    text: "Documentos"
+                    md_bg_color: 0, 0, 255, 0.8
+                    pos_hint: { "center_y": .5}
+                    font_size: 15  
+
+
+            MDCard:
+                orientation: 'horizontal'
+                elevation:30
+                size: "810dp", "100dp"
+                pos_hint: {"center_x": .5, "center_y": .4}
+                padding: "8dp" 
+                size_hint: None, None
+                border_radius: 20
+                radius: [15]
+                spacing: "10dp"
+        
+                MDLabel:
+                    
+                    text:'Para Quais Contatos Enviar?'
+                    halign: 'center'
+                    theme_text_color: "Custom"
+                    font_size: 20 
+                    size_hint_x: .05
+                    md_bg_color: app.theme_cls.primary_light  
+                    border_radius: 20
+                    radius: [15]   
+            
+                
+                MDTextField:
+                    id: inicio
+                    hint_text: 'De:'
+                    size_hint_x: .05
+                    fill_color: 0, 0, 0, .1
+                    font_size: 30
+                    text_color: 'B71C1C'
+                    bold: 'True'
+                    halign: 'center'
+                    mode: 'fill' 
+        
+                MDTextField:
+                    id: fim
+                    hint_text: 'Até:' 
+                    size_hint_x: .05
+                    fill_color: 0, 0, 0, .1
+                    mode: 'fill' 
+                    font_size: 30
+                    text_color: 'B71C1C'
+                    bold: 'True'
+                    halign: 'center'
+
+                MDFillRoundFlatIconButton:
+                    on_release: app.envio_sem_anexo()
+                    id: enviar
+                    icon: "email-send"
+                    text: "Enviar"
+                    md_bg_color: 11/255,156/255,49/255,1
+                    pos_hint: {"center_x": .85, "center_y": .45}
+                    font_size: 30
+
+           
+        
+            MDLabel:
+                id: sucesso
+                pos_hint: {"center_x": .5, "center_y": .06}
+                text:''
+                halign: 'center'
+                theme_text_color: "Custom"
+                font_size: 15
+                size_hint_x: .40
+                font_size: 20
+                    
+        MDBottomNavigationItem:
+            name: 'screen 2'
+            text: 'Inserir Contatos'
+            icon: 'account-plus'
+            badge_icon: "numeric-5"
+
+
+            MDToolbar:
+                title: "WhatsApp Web Automático"
+                pos_hint: {"center_y": .9, 'center_x': .5} 
+                size_hint_y: .15
+                halign: 'center'
+        
+
+             
+
+            MDCard:
+                orientation: 'horizontal'
+                elevation:30
+                size: "810dp", "100dp"
+                pos_hint: {"center_x": .5, "center_y": .6}
+                padding: "8dp" 
+                size_hint: None, None
+                border_radius: 20
+                radius: [15]
+                spacing: "12dp"
+  
+                MDLabel:
+                    
+                    text:'Inserir Novo Contato'
+                    halign: 'center'
+                    theme_text_color: "Custom"
+                    font_size: 20 
+                    md_bg_color: app.theme_cls.primary_light  
+                    border_radius: 20
+                    radius: [15]   
+                
+                    
+                MDTextField:
+                    id: inserir_nome
+                    hint_text: 'Nome:'
+                    fill_color: 0, 0, 0, .1
+                    font_size: 25
+                    text_color: 'B71C1C'
+                    bold: 'True'
+                    halign: 'center'
+                    mode: 'fill' 
+                
+                MDTextField:
+                    id: inserir_telefone
+                    hint_text: 'Telefone, com 9, sem (071):' 
+                    fill_color: 0, 0, 0, .1
+                    mode: 'fill' 
+                    font_size: 25
+                    text_color: 'B71C1C'
+                    bold: 'True'
+                    halign: 'center'
+
+                MDFillRoundFlatIconButton:
+                    on_press: app.inserir_contatos()
+                    on_release: app.q_contatos()
+                    id: ok_inserir
+                    icon: "account-plus"
+                    text: "OK"
+                    md_bg_color: 11/255,156/255,49/255,1
+                    font_size: 35
+                    pos_hint: {"center_x": .5, "center_y": .5}
+            
+            MDCard:
+                orientation: 'horizontal'
+                elevation:20
+                size: "810dp", "100dp"
+                pos_hint: {"center_x": .5, "center_y": .2}
+                size_hint: None, None
+                border_radius: 20
+                radius: [15]
+                padding: "6dp" 
+                spacing: "12dp"
+
+                MDLabel:
+                    text:'Quantidade de Contatos'
+                    halign: 'center'
+                    md_bg_color: app.theme_cls.primary_light
+                    text_color: 'B71C1C'
+                    font_size: 20
+                    border_radius: 20
+                    radius: [15]   
+                    
+
+                MDLabel:
+                    id: quant_contatos
+                    text:''
+                    halign: 'center'
+                    theme_text_color: "Custom"
+                    font_size: 20
+                    text_color: 'B71C1C'
+                    bold: 'True'    
+
+                    
+                MDFillRoundFlatIconButton:
+                    id: baixar
+                    on_press: app.baixar_em_excel()
+                    icon: "file-download-outline"
+                    text: "Baixar Lista de Contatos"
+                    md_bg_color: 255/255,110/255,0/255,1
+                    font_size: 16
+                    pos_hint: {"center_x": .5, "center_y": .5} 
+
+                MDFillRoundFlatIconButton:
+                    id: importar
+                    on_press: app.sql_para_excel()
+                    on_release: app.q_contatos()
+                    icon: "file-upload-outline"
+                    text: "Importar Contatos de uma Planilha"
+                    md_bg_color: 255/230,197/255,0/255,1
+                    font_size: 16
+                    pos_hint: {"center_x": .5, "center_y": .5}     
+
+        MDBottomNavigationItem:
+            name: 'screen 3'
+            text: 'Remover Contatos'
+            icon: 'trash-can-outline'
+
+            MDToolbar:
+                title: "WhatsApp Web Automático"
+                pos_hint: {"center_y": .9, 'center_x': .5} 
+                size_hint_y: .15
+                halign: 'center'
+ 
+            MDCard:
+                orientation: 'horizontal'
+                elevation:30
+                size: "810dp", "50dp"
+                pos_hint: {"center_x": .5, "center_y": .75}
+                padding: "8dp" 
+                size_hint: None, None
+                border_radius: 20
+                radius: [15]
+                spacing: "12dp"
+                
+                MDLabel:
+                    
+                    text:'Remover Contatos'
+                    halign: 'center'
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    theme_text_color: "Custom"
+                    font_size: 25 
+                    md_bg_color: app.theme_cls.primary_light  
+                    border_radius: 20
+                    radius: [15]   
+
+            MDCard:
+                orientation: 'horizontal'
+                elevation:30
+                size: "810dp", "100dp"
+                pos_hint: {"center_x": .5, "center_y": .61}
+                padding: "8dp" 
+                size_hint: None, None
+                border_radius: 20
+                radius: [15]
+                spacing: "12dp"
+        
+                MDLabel:
+                    
+                    text:'Por Nome'
+                    halign: 'center'
+                    theme_text_color: "Custom"
+                    font_size: 25 
+                    md_bg_color: app.theme_cls.primary_light  
+                    border_radius: 20
+                    radius: [15]   
+                
+                    
+                MDTextField:
+                    
+                    id: de_remove
+                    hint_text: 'Nome:'
+                    fill_color: 0, 0, 0, .1
+                    font_size: 25
+                    text_color: 'B71C1C'
+                    bold: 'True'
+                    halign: 'center'
+                    mode: 'fill' 
+
+
+                MDFillRoundFlatIconButton:
+                    on_press: app.remover_contatos_nome()
+                    on_release: app.q_contatos()
+                    icon: "trash-can-outline"
+                    text: "OK"
+                    md_bg_color: 255, 0, 0, 0.8
+                    font_size: 25
+                    pos_hint: {"center_x": .5, "center_y": .5}
+              
+
+            MDCard:
+                orientation: 'horizontal'
+                elevation:30
+                size: "810dp", "100dp"
+                pos_hint: {"center_x": .5, "center_y": .43}
+                padding: "8dp" 
+                size_hint: None, None
+                border_radius: 20
+                radius: [15]
+                spacing: "12dp"
+        
+                MDLabel:
+                    
+                    text:'Por Telefone'
+                    halign: 'center'
+                    theme_text_color: "Custom"
+                    font_size: 25 
+                    md_bg_color: app.theme_cls.primary_light  
+                    border_radius: 20
+                    radius: [15]   
+                
+                    
+                MDTextField:
+                    
+                    id: de_remove_tel
+                    hint_text: 'Telefone:'
+                    fill_color: 0, 0, 0, .1
+                    font_size: 25
+                    text_color: 'B71C1C'
+                    bold: 'True'
+                    halign: 'center'
+                    mode: 'fill' 
+
+
+                MDFillRoundFlatIconButton:
+                    on_press: app.remover_contatos_tel()
+                    on_release: app.q_contatos()
+                    icon: "trash-can-outline"
+                    text: "OK"
+                    md_bg_color: 255, 0, 0, 0.8
+                    font_size: 25
+                    pos_hint: {"center_x": .5, "center_y": .5}  
+
+            MDCard:
+                orientation: 'horizontal'
+                elevation:30
+                size: "810dp", "100dp"
+                pos_hint: {"center_x": .5, "center_y": .25}
+                padding: "8dp" 
+                size_hint: None, None
+                border_radius: 20
+                radius: [15]
+                spacing: "10dp"
+        
+                MDLabel:
+                    
+                    text:'Por Sequência'
+                    halign: 'center'
+                    theme_text_color: "Custom"
+                    font_size: 20 
+                    size_hint_x: .05
+                    md_bg_color: app.theme_cls.primary_light  
+                    border_radius: 20
+                    radius: [15]   
+            
+                
+                MDTextField:
+                    id: de_
+                    hint_text: 'De:'
+                    size_hint_x: .05
+                    fill_color: 0, 0, 0, .1
+                    font_size: 30
+                    text_color: 'B71C1C'
+                    bold: 'True'
+                    halign: 'center'
+                    mode: 'fill' 
+        
+                MDTextField:
+                    id: ate_
+                    hint_text: 'Até:' 
+                    size_hint_x: .05
+                    fill_color: 0, 0, 0, .1
+                    mode: 'fill' 
+                    font_size: 30
+                    text_color: 'B71C1C'
+                    bold: 'True'
+                    halign: 'center'
+
+                MDFillRoundFlatIconButton:
+                    on_press: app.remover_contatos_numero()
+                    on_release: app.q_contatos()
+                    id: enviar
+                    icon: "trash-can-outline"
+                    text: "OK"
+                    md_bg_color: 255, 0, 0, 0.8
+                    font_size: 25
+                    pos_hint: {"center_x": .5, "center_y": .5}  
+
+
+            MDCard:
+                orientation: 'horizontal'
+                elevation:30
+                size: "310dp", "60dp"
+                pos_hint: {"center_x": .5, "center_y": .09}
+                padding: "8dp" 
+                size_hint: None, None
+                border_radius: 20
+                radius: [15]
+                spacing: "12dp"
+
+                MDFillRoundFlatIconButton:
+                    on_press: app.remover_contatos_all()
+                    on_release: app.q_contatos()
+                    id: remove_all
+                    icon: "trash-can-outline"
+                    text: "Apagar Todos os Contatos"
+                    md_bg_color: 255, 0, 0
+                    font_size: 20
+                    pos_hint: {"center_x": .5, "center_y": .5}
+
+      
+                   
